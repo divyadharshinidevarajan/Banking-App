@@ -37,6 +37,23 @@ abstract class Account {
             System.out.println(t);
         }
     }
+    public boolean transfer(Account toAccount, double amount) {
+        if (balance >= amount) {
+            // Debit from this account
+            balance -= amount;
+            transaction.add(new Transaction("Transfer to " + toAccount.getaccountnum(), amount));
+
+            // Credit to receiver account
+            toAccount.balance += amount;
+            toAccount.transaction.add(new Transaction("Transfer from " + this.accountnum, amount));
+
+            System.out.println("Transfer Successful! " + amount + " transferred from " + this.accountnum + " to " + toAccount.getaccountnum());
+            return true;
+        } else {
+            System.out.println(" Insufficient Balance to Transfer!");
+            return false;
+        }
+    }
     public abstract void accountType();
 
 }

@@ -17,5 +17,13 @@ public class Bank {
      public List<Customers> getCustomers() {   // Getter to use in main
         return customers;
     }
+     public Customers findCustomer(String accNo) {
+        for (Customers c : customers) {
+            if (c.getAccount().getaccountnum().equals(accNo)) {
+                return c;
+            }
+        }
+        return null;
+    }
 
 }

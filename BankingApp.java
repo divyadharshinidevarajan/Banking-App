@@ -11,7 +11,8 @@ public class BankingApp {
             System.out.println("3. Deposit");
             System.out.println("4. Withdraw");
             System.out.println("5. Show Transactions");
-            System.out.println("6. Exit");
+            System.out.println("6. Transfer Money");
+            System.out.println("7. Exit");
             System.out.print("Enter choice: ");
             int ch = sc.nextInt();
             switch(ch){
@@ -90,7 +91,28 @@ public class BankingApp {
                     }
                     break;
                 }
-                case 6:{
+                case 6:
+                {
+                    sc.nextLine();
+                System.out.print("Enter Sender Account Number: ");
+                String fromAcc = sc.nextLine();
+                System.out.print("Enter Receiver Account Number: ");
+                String toAcc = sc.nextLine();
+                System.out.print("Enter amount to transfer: ");
+                double amt = sc.nextDouble();
+
+                Customers sender = bank.findCustomer(fromAcc);
+                Customers receiver = bank.findCustomer(toAcc);
+
+                if (sender != null && receiver != null) {
+                    sender.getAccount().transfer(receiver.getAccount(), amt);
+                } else {
+                    System.out.println("Invalid Account Number(s)");
+                }
+
+                }
+                break;
+                case 7:{
                 System.out.println("Thanks for banking with us!");
                 repeat=false;
                 break;
